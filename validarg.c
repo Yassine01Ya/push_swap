@@ -1,11 +1,10 @@
-#include<stdio.h>
+#include "push_swap.h"
 int ft_num(int i)
 {
     if((i >= '0'&& i <= '9') || i == ' ' || i == '+' || i == '-')
         return 1;
     return 0;
 }
-
 int check_signes(char *string)
 {
     int i;
@@ -21,7 +20,6 @@ int check_signes(char *string)
         return 1;
     return 0;
 }
-
 int check_validate(char *string)
 {
     int i;
@@ -36,32 +34,26 @@ int check_validate(char *string)
         i++;
     }
     if (check_signes(string))
-    {
-        printf("hna");
+        // printf("hna");
             return 0;
-    }
     return 1;
 }
 
-void    check_args_is_valid(char **args, int j)
+void    check_args_is_valid(char **args)
 {
     int i;
 
-    i = 0;
-    while (i < j && args)
+    i = 1;
+    while (args[i] && args)
     {
         if (!check_validate(args[i]))
         {
-            ft_free(args);
-            ft_error();
+            // printf("11111111111111111111111111111\n");
+            ft_error("Invalid Argument");
+            // printf("Invalid Argument\n");
+            exit(EXIT_FAILURE);
         }
         i++;
     }
 
-}
-
-int main()
-{
-    char *string = "12 ";
-    printf("%d\n", check_validate(string));
 }

@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 void ft_putendl(char *string, int fd)
 {
     int i;
@@ -13,17 +15,17 @@ void ft_putendl(char *string, int fd)
 }
 void    ft_error(char *arg)
 {
-    ft_putendl(arg, 2);
-    exit(1);
+  printf("Error: %s\n", arg);
+  exit(EXIT_FAILURE);
 }
 void    ft_free(char **args)
 {
     int i;
 
     i = 0;
-    while (args[i])
+    while (args[i] != NULL)
     {
-        free(args[]);
+        free(args[i]);
         i++;
     }
     free(args);
