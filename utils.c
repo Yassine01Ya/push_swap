@@ -1,32 +1,54 @@
 #include "push_swap.h"
 
-void ft_putendl(char *string, int fd)
+int str_len(char *string)
 {
     int i;
 
     i = 0;
-    if (!string || string[i] == '\0')
-        return ;
     while (string[i])
-    {
-        write (fd, &string[i], 1);
         i++;
-    }
+    return i;
 }
-void    ft_error(char *arg)
-{
-  printf("Error: %s\n", arg);
-  exit(EXIT_FAILURE);
-}
-void    ft_free(char **args)
+char *str_cat(char *string1, char *string2)
 {
     int i;
+    int j;
 
     i = 0;
-    while (args[i] != NULL)
+    j = 0;
+    while (string1[i])
+        i++;
+    while (string1 && string2[j])
     {
-        free(args[i]);
+        string1[i] = string2[j];
+        i++;
+        j++;
+    }
+    string1[i] = '\0';
+    return string1;
+}
+
+long at_oi(char *s)
+{
+    int i;
+    long res;
+    int neg;
+
+    i = 0;
+    res = 0;
+    neg = 1;
+    while (s[i] && (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'))
+        i++;
+    if (s[i] == '+' || s[i] == '-')
+    {
+        if (s[i] == '-')
+            neg *= -1;
         i++;
     }
-    free(args);
+    while (s[i] && s[i] >= '0' && s[i] <= '9')
+    {
+        res = res * 10 + s[i] - 48;
+        i++;
+    }
+    return (neg * res);
 }

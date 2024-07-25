@@ -43,7 +43,7 @@ void    check_args_is_valid(char **args)
 {
     int i;
 
-    i = 1;
+    i = 0;
     while (args[i] && args)
     {
         if (!check_validate(args[i]))
@@ -56,4 +56,24 @@ void    check_args_is_valid(char **args)
         i++;
     }
 
+}
+
+int check_duplicate(t_stack *stack)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < stack->count - 1)
+    {
+        j = i + 1;
+        while (j < stack->count)
+        {
+            if (stack->array[i] == stack->array[j])
+                return (0);
+            j++;
+        }
+        i++;
+    }
+    return (1);
 }

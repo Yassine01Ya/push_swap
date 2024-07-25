@@ -2,14 +2,15 @@
 
 int main (int c, char **v)
 {
-	if (c > 1)
+	t_data data;
+	t_stack stack_a;
+
+	get_args(&data, c, v);
+	stack_a = get_main_stack(&data);
+	int i = 0;
+	while (i < stack_a.count)
 	{
-	int i =1;
-	while(i < c)
-	{
-		check_args_is_valid(&v[i]);
+		printf("%d\n", stack_a.array[i]);
 		i++;
 	}
-	}
-	return 0;
 }
