@@ -14,6 +14,12 @@ typedef struct s_data
     char *allarg;
 }t_data;
 
+typedef struct s_holder
+{
+    int *sorted;
+    int count;
+}t_holder;
+
 typedef struct s_stack
 {
     int *array;
@@ -43,6 +49,8 @@ void str_cat(char *string1, char *string2);
 long at_oi(char *s);
 void check_min_max(int counter, char **args);
 t_stack clone_stack(t_stack stack_a);
+t_holder    make_holder(t_stack *stack_a);
+
 
 
 void    swap(int *array);
@@ -63,13 +71,13 @@ void    pb(t_stack *stack_a, t_stack *stack_b);
 int stack_is_sorted(t_stack *stack);
 void    sort_3(t_stack *stack);
 void    sort_5(t_stack *stack_a, t_stack *stack_b);
-int find_min(t_stack *stack);
+void find_min(t_stack *stack);
 int find_max(t_stack *stack);
 int find_p(int nb, int *array, int len);
 int get_index(t_stack *stack, int num);
 int find_min_p(t_stack *stack);
 int stack_is_sorted(t_stack *stack);
-void     bubble_sort(t_stack *stack);
+void     bubble_sort(t_holder *holder);
 
 
 

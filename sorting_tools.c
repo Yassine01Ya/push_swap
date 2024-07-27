@@ -1,19 +1,17 @@
 #include "push_swap.h"
 
-int find_min(t_stack *stack)
+void find_min(t_stack *stack)
 {
     int i;
-    int min;
-
-    min = INT_MAX;
     i = 0;
-    while (i < stack->count -1)
+    stack->min = INT_MAX;
+
+    while (i < stack->count)
     {
-        if (stack->array[i] < min)
-            min = stack->array[i];
+        if (stack->array[i] < stack->min)
+            stack->min = stack->array[i];
         i++;
     }
-    return (min);
 }
 
 int find_max(t_stack *stack)
@@ -32,49 +30,15 @@ int find_max(t_stack *stack)
     return (max);
 }
 
-int find_p(int nb, int *array, int len)
-{
-    int i;
-
-    i = 0;
-    while (i < len)
-    {
-        if (nb == array[i])
-            return (i);
-        i++;
-    }
-    return (0);
-}
-
-int get_index(t_stack *stack, int num)
-{
-    int i;
-    int index;
-
-    index = 0;
-    i = 0;
-    while (i < stack->count - 1)
-    {
-        if (stack->array[i] == num)
-            return (index);
-        index++;
-        i++;
-    }
-    return (-1);
-}
 int find_min_p(t_stack *stack)
 {
-    int i;
     int index;
 
     index = 0;
-    i = 0;
-    while (i < stack->count - 1)
+    while (index < stack->count - 1)
     {
-        if (stack->min == stack->array[i])
+        if (stack->min == stack->array[index])
             return (index);
-
-        i++;
         index++;
     }
     return (index);
@@ -96,19 +60,19 @@ int find_max_p(t_stack *stack)
     }
     return (index);
 }
-void     bubble_sort(t_stack *stack)
+void     bubble_sort(t_holder *holder)
 {
     int tmp;
     int i;
     
     i = 0;
-    while(i < stack->count - 1)
+    while(i < holder->count - 1)
     {
-        if (stack->array[i] > stack->array[i + 1])
+        if (holder->sorted[i] > holder->sorted[i + 1])
         {
-            tmp = stack->array[i];
-            stack->array[i] = stack->array[i + 1];
-            stack->array[i + 1] = tmp;
+            tmp = holder->sorted[i];
+            holder->sorted[i] = holder->sorted[i + 1];
+            holder->sorted[i + 1] = tmp;
             i = 0;
         }
         else
@@ -128,4 +92,22 @@ int stack_is_sorted(t_stack *stack)
         i++;
     }
     return (0);
+}
+
+t_holder    make_holder(t_stack *stack_a)
+{
+    t_holder holder;
+    int i;
+
+    holder.count = stack_a->count;
+    i = 0;
+    holder.sorted = malloc (sizeof (int) * stack_a->count);
+        //malloc error to-do
+    while (i < stack_a->count)
+    {
+        holder.sorted[i] = stack_a->array[i];
+        i++;
+    }
+    bubble_sort(&holder);
+    return (holder);
 }
