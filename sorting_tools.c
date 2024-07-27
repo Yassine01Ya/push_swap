@@ -14,20 +14,17 @@ void find_min(t_stack *stack)
     }
 }
 
-int find_max(t_stack *stack)
+void find_max(t_stack *stack)
 {
     int i;
-    int max;
-
-    max = INT_MIN;
     i = 0;
-    while (i <= stack->count -1)
+    stack->max = INT_MIN;
+    while (i < stack->count)
     {
-        if (stack->array[i] > max)
-            max = stack->array[i];
+        if (stack->array[i] > stack->max)
+            stack->max = stack->array[i];
         i++;
     }
-    return (max);
 }
 
 int find_min_p(t_stack *stack)

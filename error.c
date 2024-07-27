@@ -13,9 +13,9 @@ void ft_putendl(char *string, int fd)
         i++;
     }
 }
-void    ft_error(char *arg)
+void    ft_error()
 {
-  ft_putendl(arg, 2);
+  ft_putendl("Error", 2);
   exit(EXIT_FAILURE);
 }
 void    ft_free(char **args)

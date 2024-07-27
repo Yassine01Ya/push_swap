@@ -49,7 +49,7 @@ void    check_args_is_valid(char **args)
         if (!check_validate(args[i]))
         {
             // printf("11111111111111111111111111111\n");
-            ft_error("Invalid Argument");
+            ft_error();
             // printf("Invalid Argument\n");
             exit(EXIT_FAILURE);
         }

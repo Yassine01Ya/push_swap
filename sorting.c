@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void    sort_3(t_stack *stack)
+void sort_3(t_stack *stack)
 {
 
-    stack->max = find_max(stack);
+    find_max(stack);
     if (stack->max == stack->array[0])
         ra(stack);
     else if (stack->max == stack->array[1])
@@ -12,7 +12,7 @@ void    sort_3(t_stack *stack)
         sa(stack);
 }
 
-void    sort_5(t_stack *stack_a, t_stack *stack_b)
+void sort_5(t_stack *stack_a, t_stack *stack_b)
 {
     int size;
     int index;
@@ -36,9 +36,9 @@ void    sort_5(t_stack *stack_a, t_stack *stack_b)
 
 int ft_cap(int val, int min, int max)
 {
-    if (val< min)
+    if (val < min)
         return min;
-    if (val> max)
+    if (val > max)
         return max;
     return val;
 }
@@ -48,7 +48,7 @@ int get_sorted_index(t_holder holder, int val)
     int i;
 
     i = 0;
-    while(i < holder.count)
+    while (i < holder.count)
     {
         if (holder.sorted[i] == val)
             return i;
@@ -57,64 +57,65 @@ int get_sorted_index(t_holder holder, int val)
     return -1;
 }
 
-int	find_index(t_stack *a, t_holder holder, int index, int range)
-{
-	int	i;
-
-	i = 0;
-	while (i < a->count)
-	{
-		if (get_sorted_index(holder, a->array[i]) <= index || get_sorted_index(holder, a->array[i]) <= index + range)
-			break ;
-		i++;
-	}
-	return (i);
-}
-
-void big_sorting(t_stack *stack_a, t_stack *stack_b)
+int find_index(t_stack *a, t_holder holder, int index, int range)
 {
     int i;
-    int range;
-    int pushed;
+
+    i = 0;
+    while (i < a->count)
+    {
+        if (get_sorted_index(holder, a->array[i]) <= index || get_sorted_index(holder, a->array[i]) <= index + range)
+            break;
+        i++;
+    }
+    return (i);
+}
+
+void start_big_sorting(t_holder holder, t_stack *stack_a, t_stack *stack_b, int range)
+{
+    int len;
+    int i;
+
+    i = 0;
+    len = stack_a->count;
+    while (i < len)
+    {
+        if (get_sorted_index(holder, stack_a->array[0]) <= i)
+        {
+            pb(stack_a, stack_b);
+            rb(stack_b);
+            i++;
+        }
+        else if (get_sorted_index(holder, stack_a->array[0]) <= i + range)
+        {
+            pb(stack_a, stack_b);
+            i++;
+        }
+        else if (find_index(stack_a, holder, i, range) < stack_a->count / 2)
+            ra(stack_a);
+        else
+            rra(stack_a);
+    }
+}
+
+void big_sorting(t_stack *stack_a, t_stack *stack_b, int range)
+{
     t_holder holder;
 
-	holder = make_holder(stack_a);
-
-    if (stack_a->count >= 100)
-        range = 17;
-    else
-        range = 30;
-    i = 0;
-    //index = 0;
-	while (i < stack_a->count)
-	{
-		if (get_sorted_index(holder, stack_a->array[0]) <= i)
-		{
-			pb(stack_a, stack_b);
-			rb(stack_b);
-			i++;
-		}
-		else if (get_sorted_index(holder, stack_a->array[0]) <= i + range)
-		{
-			pb(stack_a, stack_b);
-			i++;
-		}
-		else if (find_index(stack_a, holder, i, range) < stack_a->count / 2)
-			ra(stack_a);
-		else
-			rra(stack_a);
-	}
+    holder = make_holder(stack_a);
+    start_big_sorting(holder, stack_a, stack_b, range);
+    free(holder.sorted);
     push_to_stack_a(stack_a, stack_b);
 }
 
-void    push_to_stack_a(t_stack *stack_a, t_stack *stack_b)
+void push_to_stack_a(t_stack *stack_a, t_stack *stack_b)
 {
     int max_posintion;
 
     while (stack_b->count)
     {
         max_posintion = find_max_p(stack_b);
-        if (max_posintion <= stack_b->count/2)
+        if (max_posintion <= stack_b->count / 2)
         {
             while (max_posintion > 0)
             {

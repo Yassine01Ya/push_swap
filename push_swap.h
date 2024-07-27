@@ -34,7 +34,7 @@ typedef struct s_stack
 char	**ft_split(char const *s, char c);
 int str_len(char *string);
 void ft_putendl(char *string, int fd);
-void    ft_error(char *arg);
+void    ft_error();
 void    ft_free(char **args);
 int ft_num(int i);
 int check_signes(char *string);
@@ -68,12 +68,12 @@ void    rr(t_stack *stack_a ,t_stack *stack_b);
 void    rrr(t_stack *stack_a ,t_stack *stack_b);
 void    pa(t_stack *stack_a, t_stack *stack_b);
 void    pb(t_stack *stack_a, t_stack *stack_b);
-int stack_is_sorted(t_stack *stack);
+int     stack_is_sorted(t_stack *stack);
 void    sort_3(t_stack *stack);
 void    sort_5(t_stack *stack_a, t_stack *stack_b);
-void big_sorting(t_stack *stack_a, t_stack *stack_b);
+void big_sorting(t_stack *stack_a, t_stack *stack_b, int range);
 void find_min(t_stack *stack);
-int find_max(t_stack *stack);
+void  find_max(t_stack *stack);
 int find_p(int nb, int *array, int len);
 int find_max_p(t_stack *stack);
 

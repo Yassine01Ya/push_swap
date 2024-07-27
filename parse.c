@@ -11,7 +11,7 @@ void    get_args(t_data *data, int c, char ** v)
     while (i < c)
     {
         if (v[i][0] == 0 || !v[i])
-            ft_error("Error");
+            ft_error();
         length += str_len(v[i]);
         i++;
     }
@@ -36,18 +36,18 @@ t_stack get_stack(char *args)
     char **split;
     int word_count;
 
+    res.array = NULL;
     word_count = ft_word_count(args, ' ');
     split = ft_split(args, ' ');
     if (!split)
-        ft_error("Split Eroor");
-    free(args);
+        return res;
     check_min_max(word_count, split);
     check_args_is_valid(split);
     res.array = (int *)malloc(sizeof(int) * word_count);
     if (!res.array)
     {
-        ft_error("malloc Error");
-        exit(1);
+        ft_free(split);
+        return res;
     }
     res.count = 0;
     while (res.count < word_count)
@@ -63,10 +63,13 @@ t_stack get_main_stack(t_data *data)
     t_stack stack_a;
 
     stack_a = get_stack(data->allarg);
+    free(data->allarg);
+    if (stack_a.array)
+        return (stack_a);
     if (!check_duplicate(&stack_a))
     {
         free(stack_a.array);
-        ft_error("Duplicate Error");
+        ft_error();
         exit(1);
     }
     return (stack_a);
@@ -84,7 +87,7 @@ void check_min_max(int counter, char **args)
         if (res < INT_MIN || res > INT_MAX)
         {
             ft_free(args);
-            ft_error("integer overflow");
+            ft_error();
         }
         i++;
     }
@@ -95,7 +98,7 @@ t_stack clone_stack(t_stack stack_a)
     t_stack stack;
     stack.array = malloc(sizeof(int) * stack_a.count);
     if (!stack.array)
-        free(stack.array);
+        return stack;
     stack.count = 0;
     return (stack);
 }
