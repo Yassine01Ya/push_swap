@@ -12,12 +12,11 @@ void sort_stacks(t_stack *stack_a ,t_stack *stack_b)
 		big_sorting(stack_a, stack_b, 17);
 }
 
-int main(int c, char **v)
+int main(int c,  char **v)
 {
 	t_data data;
 	t_stack stack_a;
 	t_stack stack_b;
-	t_holder holder;
 
 	get_args(&data, c, v);
 	stack_a = get_main_stack(&data);
