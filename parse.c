@@ -7,19 +7,21 @@ void    get_args(t_data *data, int c, char ** v)
     int length;
 
     i = 1;
+    length = 0;
     while (i < c)
     {
         if (v[i][0] == 0 || !v[i])
-            ft_error("Eoror");
+            ft_error("Error");
         length += str_len(v[i]);
         i++;
     }
     length++;
-    data->allarg = malloc(sizeof (char *) * length + c);
+    data->allarg = (char *)malloc(sizeof (char) * (length + c ));
     if(!data->allarg)
         exit(EXIT_FAILURE);
     i = 1;
-    while (i < c)
+    data->allarg[0]='\0';
+    while (v[i] && i < c)
     {
         str_cat(data->allarg, v[i]);
         if (i < c - 1)
@@ -55,7 +57,6 @@ t_stack get_stack(char *args)
     }
     ft_free(split);
     return (res);
-
 }
 t_stack get_main_stack(t_data *data)
 {
@@ -87,4 +88,14 @@ void check_min_max(int counter, char **args)
         }
         i++;
     }
+}
+
+t_stack clone_stack(t_stack stack_a)
+{
+    t_stack stack;
+    stack.array = malloc(sizeof(int) * stack_a.count);
+    if (!stack.array)
+        free(stack.array);
+    stack.count = 0;
+    return (stack);
 }

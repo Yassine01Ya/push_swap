@@ -9,23 +9,22 @@ int str_len(char *string)
         i++;
     return i;
 }
-char *str_cat(char *string1, char *string2)
+void str_cat(char *string1, char *string2)
 {
     int i;
     int j;
 
     i = 0;
     j = 0;
-    while (string1[i])
+    while (string1 && string1[i])
         i++;
-    while (string1 && string2[j])
+    while (string2[j])
     {
         string1[i] = string2[j];
         i++;
         j++;
     }
     string1[i] = '\0';
-    return string1;
 }
 
 long at_oi(char *s)

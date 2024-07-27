@@ -18,7 +18,11 @@ typedef struct s_stack
 {
     int *array;
     int count;
+    int max;
+    int min;
+    
 }t_stack;
+
 
 
 char	**ft_split(char const *s, char c);
@@ -35,9 +39,39 @@ int check_duplicate(t_stack *stack);
 void    get_args(t_data *data, int c, char ** v);
 t_stack get_stack(char *args);
 t_stack get_main_stack(t_data *data);
-char *str_cat(char *string1, char *string2);
+void str_cat(char *string1, char *string2);
 long at_oi(char *s);
 void check_min_max(int counter, char **args);
+t_stack clone_stack(t_stack stack_a);
+
+
+void    swap(int *array);
+void    rotate(t_stack *stack);
+void    reverse_rotate(t_stack *stack);
+void    push(t_stack *stack1, t_stack *stack2);
+void    sa(t_stack *stack_a);
+void    sb(t_stack *stack_b);
+void    ra(t_stack *stack_a);
+void    rb(t_stack *stack_b);
+void    rra(t_stack *stack_a);
+void    rrb(t_stack *stack_b);
+void    ss(t_stack *stack_a, t_stack *stack_b);
+void    rr(t_stack *stack_a ,t_stack *stack_b);
+void    rrr(t_stack *stack_a ,t_stack *stack_b);
+void    pa(t_stack *stack_a, t_stack *stack_b);
+void    pb(t_stack *stack_a, t_stack *stack_b);
+int stack_is_sorted(t_stack *stack);
+void    sort_3(t_stack *stack);
+void    sort_5(t_stack *stack_a, t_stack *stack_b);
+int find_min(t_stack *stack);
+int find_max(t_stack *stack);
+int find_p(int nb, int *array, int len);
+int get_index(t_stack *stack, int num);
+int find_min_p(t_stack *stack);
+int stack_is_sorted(t_stack *stack);
+void     bubble_sort(t_stack *stack);
+
+
 
 
 #endif
