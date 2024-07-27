@@ -35,7 +35,7 @@ int find_min_p(t_stack *stack)
     int index;
 
     index = 0;
-    while (index < stack->count - 1)
+    while (index < stack->count)
     {
         if (stack->min == stack->array[index])
             return (index);
@@ -51,9 +51,9 @@ int find_max_p(t_stack *stack)
 
     index = 0;
     i = 0;
-    while (i < stack->count - 1)
+    while (i < stack->count)
     {
-        if (stack->min == stack->array[i])
+        if (stack->max == stack->array[i])
             return (index);
         i++;
         index++;

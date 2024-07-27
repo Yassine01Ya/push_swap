@@ -34,3 +34,103 @@ void    sort_5(t_stack *stack_a, t_stack *stack_b)
         pa(stack_a, stack_b);
 }
 
+int ft_cap(int val, int min, int max)
+{
+    if (val< min)
+        return min;
+    if (val> max)
+        return max;
+    return val;
+}
+
+int get_sorted_index(t_holder holder, int val)
+{
+    int i;
+
+    i = 0;
+    while(i < holder.count)
+    {
+        if (holder.sorted[i] == val)
+            return i;
+        i++;
+    }
+    return -1;
+}
+
+int	find_index(t_stack *a, t_holder holder, int index, int range)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->count)
+	{
+		if (get_sorted_index(holder, a->array[i]) <= index || get_sorted_index(holder, a->array[i]) <= index + range)
+			break ;
+		i++;
+	}
+	return (i);
+}
+
+void big_sorting(t_stack *stack_a, t_stack *stack_b)
+{
+    int i;
+    int range;
+    int pushed;
+    t_holder holder;
+
+	holder = make_holder(stack_a);
+
+    if (stack_a->count >= 100)
+        range = 17;
+    else
+        range = 30;
+    i = 0;
+    //index = 0;
+	while (i < stack_a->count)
+	{
+		if (get_sorted_index(holder, stack_a->array[0]) <= i)
+		{
+			pb(stack_a, stack_b);
+			rb(stack_b);
+			i++;
+		}
+		else if (get_sorted_index(holder, stack_a->array[0]) <= i + range)
+		{
+			pb(stack_a, stack_b);
+			i++;
+		}
+		else if (find_index(stack_a, holder, i, range) < stack_a->count / 2)
+			ra(stack_a);
+		else
+			rra(stack_a);
+	}
+    push_to_stack_a(stack_a, stack_b);
+}
+
+void    push_to_stack_a(t_stack *stack_a, t_stack *stack_b)
+{
+    int max_posintion;
+
+    while (stack_b->count)
+    {
+        max_posintion = find_max_p(stack_b);
+        if (max_posintion <= stack_b->count/2)
+        {
+            while (max_posintion > 0)
+            {
+                rb(stack_b);
+                max_posintion--;
+            }
+        }
+        else
+        {
+            max_posintion = stack_b->count - max_posintion;
+            while (max_posintion > 0)
+            {
+                rrb(stack_b);
+                max_posintion--;
+            }
+        }
+        pa(stack_a, stack_b);
+    }
+}

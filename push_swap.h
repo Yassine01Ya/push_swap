@@ -71,15 +71,17 @@ void    pb(t_stack *stack_a, t_stack *stack_b);
 int stack_is_sorted(t_stack *stack);
 void    sort_3(t_stack *stack);
 void    sort_5(t_stack *stack_a, t_stack *stack_b);
+void big_sorting(t_stack *stack_a, t_stack *stack_b);
 void find_min(t_stack *stack);
 int find_max(t_stack *stack);
 int find_p(int nb, int *array, int len);
+int find_max_p(t_stack *stack);
+
 int get_index(t_stack *stack, int num);
 int find_min_p(t_stack *stack);
 int stack_is_sorted(t_stack *stack);
 void     bubble_sort(t_holder *holder);
-
-
+void    push_to_stack_a(t_stack *stack_a, t_stack *stack_b);
 
 
 #endif
