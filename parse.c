@@ -79,7 +79,6 @@ t_stack	get_main_stack(t_data *data)
 	{
 		free(stack_a.array);
 		ft_error();
-		exit(1);
 	}
 	return (stack_a);
 }
