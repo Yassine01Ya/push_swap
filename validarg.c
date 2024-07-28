@@ -62,7 +62,8 @@ void	check_args_is_valid(char **args, t_data *data)
 	while (args[i] && args)
 	{
 		if (!check_validate(args[i]))
-		{	ft_free(args);
+		{
+			ft_free(args);
 			free(data->allarg);
 			ft_error();
 		}
