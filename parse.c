@@ -75,8 +75,6 @@ t_stack	get_main_stack(t_data *data)
 
 	stack_a = get_stack(data);
 	free(data->allarg);
-	if (stack_a.array == NULL)
-		return (stack_a);
 	if (!check_duplicate(&stack_a))
 	{
 		free(stack_a.array);
