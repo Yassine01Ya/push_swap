@@ -24,6 +24,7 @@ void	ft_putendl(char *string, int fd)
 		write(fd, &string[i], 1);
 		i++;
 	}
+	write(1, "\n", 1);
 }
 
 void	ft_error(void)
