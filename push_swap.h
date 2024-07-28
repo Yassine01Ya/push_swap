@@ -6,18 +6,16 @@
 /*   By: yafilali <yafilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 00:53:21 by yafilali          #+#    #+#             */
-/*   Updated: 2024/07/28 01:17:41 by yafilali         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:35:12 by yafilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define INT_MIN -2147483648
-# define INT_MAX 2147483647
 # include <stddef.h>
+# include <limits.h>
 # include <stdlib.h>
-# include <string.h>
 # include <unistd.h>
 
 typedef struct s_data

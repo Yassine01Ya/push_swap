@@ -6,7 +6,7 @@
 /*   By: yafilali <yafilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 00:52:43 by yafilali          #+#    #+#             */
-/*   Updated: 2024/07/28 00:54:10 by yafilali         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:32:39 by yafilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_putendl(char *string, int fd)
 		write(fd, &string[i], 1);
 		i++;
 	}
-	write(1, "\n", 1);
+	write(fd, "\n", 1);
 }
 
 void	ft_error(void)
