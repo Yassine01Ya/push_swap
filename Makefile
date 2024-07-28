@@ -1,4 +1,4 @@
-SRC = error.c moves2.c moves3.c moves.c parse.c sorting.c sorting_tools.c split.c test_file.c utils.c validarg.c
+SRC = big_sort.c error.c moves2.c moves3.c moves.c parse.c sorting.c sorting_tools.c split.c main.c utils.c validarg.c
 OBJ = $(SRC:.c=.o)
 CC = cc
 

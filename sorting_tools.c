@@ -1,110 +1,91 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting_tools.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yafilali <yafilali@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/28 00:52:58 by yafilali          #+#    #+#             */
+/*   Updated: 2024/07/28 01:10:58 by yafilali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void find_min(t_stack *stack)
+void	find_min(t_stack *stack)
 {
-    int i;
-    i = 0;
-    stack->min = INT_MAX;
+	int	i;
 
-    while (i < stack->count)
-    {
-        if (stack->array[i] < stack->min)
-            stack->min = stack->array[i];
-        i++;
-    }
+	i = 0;
+	stack->min = INT_MAX;
+	while (i < stack->count)
+	{
+		if (stack->array[i] < stack->min)
+			stack->min = stack->array[i];
+		i++;
+	}
 }
 
-void find_max(t_stack *stack)
+void	find_max(t_stack *stack)
 {
-    int i;
-    i = 0;
-    stack->max = INT_MIN;
-    while (i < stack->count)
-    {
-        if (stack->array[i] > stack->max)
-            stack->max = stack->array[i];
-        i++;
-    }
+	int	i;
+
+	i = 0;
+	stack->max = INT_MIN;
+	while (i < stack->count)
+	{
+		if (stack->array[i] > stack->max)
+			stack->max = stack->array[i];
+		i++;
+	}
 }
 
-int find_min_p(t_stack *stack)
+int	find_min_p(t_stack *stack)
 {
-    int index;
+	int	index;
 
-    index = 0;
-    while (index < stack->count)
-    {
-        if (stack->min == stack->array[index])
-            return (index);
-        index++;
-    }
-    return (index);
+	index = 0;
+	while (index < stack->count)
+	{
+		if (stack->min == stack->array[index])
+			return (index);
+		index++;
+	}
+	return (index);
 }
 
-int find_max_p(t_stack *stack)
+int	find_max_p(t_stack *stack)
 {
-    int i;
-    int index;
+	int	i;
+	int	index;
 
-    index = 0;
-    i = 0;
-    while (i < stack->count)
-    {
-        if (stack->max == stack->array[i])
-            return (index);
-        i++;
-        index++;
-    }
-    return (index);
-}
-void     bubble_sort(t_holder *holder)
-{
-    int tmp;
-    int i;
-    
-    i = 0;
-    while(i < holder->count - 1)
-    {
-        if (holder->sorted[i] > holder->sorted[i + 1])
-        {
-            tmp = holder->sorted[i];
-            holder->sorted[i] = holder->sorted[i + 1];
-            holder->sorted[i + 1] = tmp;
-            i = 0;
-        }
-        else
-            i++;
-    }
+	index = 0;
+	i = 0;
+	while (i < stack->count)
+	{
+		if (stack->max == stack->array[i])
+			return (index);
+		i++;
+		index++;
+	}
+	return (index);
 }
 
-int stack_is_sorted(t_stack *stack)
+t_holder	make_holder(t_stack *stack_a)
 {
-    int i;
+	t_holder	holder;
+	int			i;
 
-    i = 0;
-    while(i < stack->count - 1)
-    {
-        if (stack->array[i] > stack->array[i + 1])
-                return (1);
-        i++;
-    }
-    return (0);
-}
-
-t_holder    make_holder(t_stack *stack_a)
-{
-    t_holder holder;
-    int i;
-
-    holder.count = stack_a->count;
-    i = 0;
-    holder.sorted = malloc (sizeof (int) * stack_a->count);
-        //malloc error to-do
-    while (i < stack_a->count)
-    {
-        holder.sorted[i] = stack_a->array[i];
-        i++;
-    }
-    bubble_sort(&holder);
-    return (holder);
+	holder.count = stack_a->count;
+	i = 0;
+	holder.sorted = malloc(sizeof(int) * stack_a->count);
+	if (!holder.sorted)
+		exit(EXIT_FAILURE);
+	while (i < stack_a->count)
+	{
+		holder.sorted[i] = stack_a->array[i];
+		i++;
+	}
+	bubble_sort(&holder);
+	return (holder);
 }
