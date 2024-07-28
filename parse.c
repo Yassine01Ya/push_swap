@@ -27,7 +27,7 @@ void	get_args(t_data *data, int c, char **v)
 		i++;
 	}
 	length++;
-	data->allarg = (char *)malloc(sizeof(char) * (length + c));
+	data->allarg = malloc(sizeof(char) * (length + c));
 	if (!data->allarg)
 		exit(EXIT_FAILURE);
 	i = 1;
@@ -41,19 +41,18 @@ void	get_args(t_data *data, int c, char **v)
 	}
 }
 
-t_stack	get_stack(char *args)
+t_stack	get_stack(t_data *data)
 {
 	t_stack	res;
 	char	**split;
 	int		word_count;
 
 	res.array = NULL;
-	word_count = ft_word_count(args, ' ');
-	split = ft_split(args, ' ');
+	word_count = ft_word_count(data->allarg, ' ');
+	split = ft_split(data->allarg, ' ');
 	if (!split)
 		return (res);
-	check_min_max(word_count, split);
-	check_args_is_valid(split);
+	check_args_is_valid(split, data);
 	res.array = (int *)malloc(sizeof(int) * word_count);
 	if (!res.array)
 	{
@@ -74,7 +73,7 @@ t_stack	get_main_stack(t_data *data)
 {
 	t_stack	stack_a;
 
-	stack_a = get_stack(data->allarg);
+	stack_a = get_stack(data);
 	free(data->allarg);
 	if (stack_a.array == NULL)
 		return (stack_a);
@@ -87,17 +86,18 @@ t_stack	get_main_stack(t_data *data)
 	return (stack_a);
 }
 
-void	check_min_max(int counter, char **args)
+void	check_min_max(t_data *data, char **args)
 {
 	int		i;
 	long	res;
 
 	i = 0;
-	while (i < counter && args)
+	while (args && args[i])
 	{
 		res = at_oi(args[i]);
 		if (res < INT_MIN || res > INT_MAX)
 		{
+			free(data->allarg);
 			ft_free(args);
 			ft_error();
 		}

@@ -49,15 +49,15 @@ void		ft_free(char **args);
 int			ft_num(int i);
 int			check_signes(char *string);
 int			check_validate(char *string);
-void		check_args_is_valid(char **args);
+void		check_args_is_valid(char **args, t_data *data);
 int			ft_word_count(char const *s, char c);
 int			check_duplicate(t_stack *stack);
 void		get_args(t_data *data, int c, char **v);
-t_stack		get_stack(char *args);
+t_stack		get_stack(t_data *data);
 t_stack		get_main_stack(t_data *data);
 void		str_cat(char *string1, char *string2);
 long		at_oi(char *s);
-void		check_min_max(int counter, char **args);
+void		check_min_max(t_data *data, char **args);
 t_stack		clone_stack(t_stack stack_a);
 t_holder	make_holder(t_stack *stack_a);
 

@@ -53,17 +53,18 @@ int	check_validate(char *string)
 	return (1);
 }
 
-void	check_args_is_valid(char **args)
+void	check_args_is_valid(char **args, t_data *data)
 {
 	int	i;
 
 	i = 0;
+	check_min_max(data, args);
 	while (args[i] && args)
 	{
 		if (!check_validate(args[i]))
-		{
+		{	ft_free(args);
+			free(data->allarg);
 			ft_error();
-			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
